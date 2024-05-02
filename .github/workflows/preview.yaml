@@ -10,7 +10,6 @@ on:
             - main
 
 jobs:
-
     Test:
         runs-on: ubuntu-latest
         defaults:
@@ -19,18 +18,21 @@ jobs:
         steps:
 
             - uses: actions/checkout@v3
-            
-            - name: Set up Node.js
-                  uses: actions/setup-node@v3
-                  with:
-                    node-version: '18'
 
-            - name: Install dependencies
+            - name: Setup NodeJS
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 18
+
+            - name: Install Dependencies
               run: npm install
 
-            - name: Run tests
-              run: npm test
+            - name: Run Tests
+              run: npm test  
 
+            - name: Test Coverage
+              run: npm test -- --coverage  
+ 
     Deploy-Preview:
         needs: [Test]
         runs-on: ubuntu-latest
