@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: Production Deploy
 
 env:
     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -10,7 +10,28 @@ on:
             - main
 
 jobs:
-    Deploy-Production:
+
+    Test:
+        runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: frontend
+        steps:
+
+            - uses: actions/checkout@v3
+            
+            - uses: actions/setup-node@v3
+              with:
+                node-version: 18
+
+            - run: npm install
+
+            - run: npm test  
+
+            - name: Test Coverage
+              run: npm test -- --coverage
+
+    Deploy-Prod:
         runs-on: ubuntu-latest
         steps:
 
