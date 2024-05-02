@@ -27,7 +27,8 @@ jobs:
 
             - run: npm test  
 
-            - run: npm test -- --coverage  
+            - name: Test Coverage
+              run: npm test -- --coverage | grep -v 'Warning:'  
 
             - name: Print Coverage Summary
               run: cat ./coverage/lcov-report/index.html  
