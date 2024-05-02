@@ -1,0 +1,5 @@
+steps to update main on local:
+
+- git checkout YOUR_BRANCH
+- git fetch origin main
+- git reset --hard origin/main
