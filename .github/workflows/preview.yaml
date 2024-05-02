@@ -12,6 +12,9 @@ on:
 jobs:
     Test:
         runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: frontend
         steps:
 
             - uses: actions/checkout@v3
@@ -20,9 +23,6 @@ jobs:
               with:
                 node-version: 18
 
-            - name: Change to Frontend Directory
-              run: cd frontend
-            
             - run: npm install
 
             - run: npm test  
