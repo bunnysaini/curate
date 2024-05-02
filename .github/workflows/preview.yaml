@@ -27,6 +27,11 @@ jobs:
 
             - run: npm test  
 
+            - run: npm test -- --coverage  
+
+            - name: Print Coverage Summary
+              run: cat ./coverage/lcov-report/index.html  
+
 
     Deploy-Preview:
         needs: [Test]
